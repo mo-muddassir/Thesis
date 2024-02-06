@@ -1,0 +1,106 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\title{Adiabatic Growth of Black Holes in a Plummer Sphere}
+\author{Joseph D. MacMillan}
+\date{May 2023}
+
+\begin{document}
+
+\maketitle
+
+\section{Spherical Collisionless Systems}
+
+In a collisionless system, the constituent particles (e.g., stars or dark matter particles) move under the influence of the smooth gravitational potential of the system $\Phi(\textbf{r}, t)$ (created by all other particles); that is, particles don't react to other particles, but rather the entire system itself.  In this case, the state of the system can be described by a distribution function (DF) $f(\textbf{r}, \textbf{v}, t)$; the quantity $f(\textbf{r}, \textbf{v}, t)\, d^3\textbf{r} d^3 \textbf{v}$ is the number (or mass) of particles having positions in the volume $d^3\textbf{r}$ centred on $\textbf{r}$ and having the range of velocities $d^3 \textbf{v}$ centred on $\textbf{v}$.
+
+Any physical quantity can be calculated from the DF; for example, the density is
+\[
+\rho(\textbf{r}) = \int f d^3\textbf{v},
+\]
+and various moments of the velocity components $v_i$ can be computed from
+\[
+\langle v_i^m v_j^n \rangle = \frac{1}{\rho} \int v_i^m v_j^n f \, d^3\textbf{v},
+\]
+Given the density, the gravitational potential can be found from Poisson's equation,
+\[
+\nabla^2 \Phi = 4\pi G \rho(\textbf{r}),
+\]
+and once we have the potential, the motion of particles is given by Newton's second law.
+
+Now, in the case that the DF is \emph{steady-state} (no time dependence) and spherically symmetric in all its properties, the system will admit four integrals of motion:  the energy (per unit mass) $E = v^2 /2 + \Phi$, and the three components of the angular momentum $\textbf{J}$.  Furthermore, the DF will depend only on the energy and the magnitude of the angular momentum:  $f = f(E, J)$ only.  
+
+Let's write the velocity in terms of a \emph{radial} component and a \emph{tangential} (or \emph{transverse}) component: 
+\[
+v^2 = v_r^2 + v_t^2.
+\]
+The transverse component is related to the angular momentum, since from
+\[
+\textbf{J} = \textbf{r} \times \textbf{v}
+\]
+we have
+\begin{equation}
+J = rv_t,
+\end{equation}
+so the energy can be written 
+\[
+E = \frac{v_r^2}{2} + \frac{J^2}{2r^2} + \Phi,
+\]
+or, rearranged for the radial velocity, we have
+\begin{equation}
+v_r = \sqrt{2 (E - \Phi) - J^2/r^2}.
+\end{equation}
+Note that since the radial velocity can't be imaginary, the angular momentum has a maximum possible value 
+\begin{equation}
+J_\text{max} = \sqrt{2r^2 (E - \Phi)}.
+\end{equation}
+
+Finally, we're ready to transform from $(\textbf{r}, \textbf{v})$ to $(E, J)$ space.  In terms of the energy and angular momentum, the density becomes
+\begin{equation}
+\rho(r) = 4 \pi \int_{\Phi(r)}^{\Phi(\infty)} dE \int_0^{J_\text{max}} \frac{J\, dJ}{r^2 v_r} \, f(E, J),
+\end{equation}
+and the velocity moments are
+\begin{equation}
+\langle v_r^m v_t^n \rangle = \frac{4 \pi}{\rho} \int_{\Phi(r)}^{\Phi(\infty)} dE \int_0^{J_\text{max}} \frac{J\, dJ}{r^2 v_r} v_r^m v_t^n f(E, J).
+\end{equation}
+Poisson's equation, for spherical symmetry, becomes
+\begin{equation}
+\Phi(r) = 4 \pi G \int_0^r \rho(s) s \, ds - \frac{GM(r)}{r},
+\end{equation}
+where $M(r)$ is the total mass within a radius $r$,
+\begin{equation}
+M(r) = 4 \pi \int_0^r \rho(s) s^2 \, ds.
+\end{equation}
+
+\section{The Plummer Sphere}
+
+We're investigating the growth of supermassive black holes in dark matter halos, and to start we need a simple model of the halo.  Although it's not a \emph{great} model, the Plummer sphere will do for now; it's defined by the DF
+\begin{equation}
+f(E, J) = \frac{24 \sqrt{2}}{7 \pi^3} \frac{a^2}{G^5 M^4} (-E)^{7/2},
+\end{equation}
+where $a$ is a scale radius and $M$ is the total mass of the system.  Normally we'll take $G = M = a$.  The gravitational potential of the Plummer sphere is
+\begin{equation}
+\Phi(r) = - \frac{GM}{a} \frac{1}{\sqrt{1 + r^2/a^2}}
+\end{equation}
+and the density is
+\begin{equation}
+\rho(r) = \frac{3}{4\pi} \frac{M}{a^3} \frac{1}{(1 + r^2/a^2)^{5/2}}.
+\end{equation}
+From the above equations, we can calculate 
+\begin{equation}
+\langle v_r^2 \rangle = \frac{GM}{6a} \frac{1}{\sqrt{1 + r^2/a^2}}
+\end{equation}
+and 
+\begin{equation}
+\langle v_t^2 \rangle = \frac{GM}{3a} \frac{1}{\sqrt{1 + r^2/a^2}}.
+\end{equation}
+
+
+
+\section{Adiabatic Growth of Black Holes}
+
+See thesis for details, too lazy to write it out here.  The Jupyter notebook also has details.  Just the plot:
+
+\includegraphics[scale=0.55]{code/fig_results.pdf}
+
+\end{document}

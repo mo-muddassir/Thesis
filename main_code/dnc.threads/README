@@ -1,0 +1,8 @@
+File format is binary with each record consisting of:
+mass x y z vx vy vz id
+(all floats except for id which is an int)
+
+Plus a header at the top:  N and time.
+(N is int, time is double)
+
+Try dnc -h for options.
