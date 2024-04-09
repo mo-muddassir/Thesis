@@ -2,6 +2,10 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib
+
+matplotlib.rc('xtick', labelsize=13)
+matplotlib.rc('ytick', labelsize=13)
 
 #Never change these
 pi = np.pi
@@ -17,12 +21,12 @@ ic_vel_eq = np.loadtxt('/home/moe/research/Thesis/analysis/equal_ic.vel', unpack
 
 #plot
 fig, axs = plt.subplots(2, figsize = (12,12), constrained_layout=True)
-axs[0].plot(np.log10(r),np.log10(den))
-axs[1].plot(np.log10(r), np.log10(vr_2))
-axs[0].scatter(ic_den_eq[0],ic_den_eq[1], color = 'blue', marker = '^',label = 'Equal Mass')
-axs[1].scatter(ic_vel_eq[0],ic_vel_eq[1], color='blue', marker = '^', label = 'Equal Mass')
-axs[0].scatter(ic_den_un[0],ic_den_un[1], color='red', marker=',', label='Unequal Mass')
-axs[1].scatter(ic_vel_un[0],ic_vel_un[1], color='red', marker=',', label='Unequal Mass')
+axs[0].plot(np.log10(r),np.log10(den), zorder=1, linewidth=2.5, color='black')
+axs[1].plot(np.log10(r), np.log10(vr_2), zorder=1, linewidth=2.5, color='black')
+axs[0].scatter(ic_den_eq[0],ic_den_eq[1], color = 'blue', marker = '.',label = 'Equal Mass')
+axs[1].scatter(ic_vel_eq[0],ic_vel_eq[1], color='blue', marker = '.', label = 'Equal Mass')
+axs[0].scatter(ic_den_un[0],ic_den_un[1], color='red', marker='.', label='Unequal Mass')
+axs[1].scatter(ic_vel_un[0],ic_vel_un[1], color='red', marker='.', label='Unequal Mass')
 
 
 #plot details

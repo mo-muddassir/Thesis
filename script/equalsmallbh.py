@@ -14,15 +14,28 @@ den_eq_smbh = np.loadtxt('/home/moe/research/Thesis/analysis/equal_small_bh_fina
 vel_eq_smbh = np.loadtxt('/home/moe/research/Thesis/analysis/equal_small_bh_final.vel', unpack=True)
 ic_den_eq = np.loadtxt('/home/moe/research/Thesis/analysis/equal_ic.den', unpack=True)
 ic_vel_eq = np.loadtxt('/home/moe/research/Thesis/analysis/equal_ic.vel', unpack=True)
+r_ad, rho_ad,phi_ad, vr2_ad, vt2_ad, rhostar_ad, phistar_ad, vr2star_ad, vt2star_ad = np.loadtxt('/home/moe/research/Thesis/outputs/pred_001m.txt', unpack = True)
 
 #plot
 fig, axs = plt.subplots(2, figsize = (12,12), constrained_layout=True)
-axs[0].plot(np.log10(r),np.log10(den))
-axs[1].plot(np.log10(r), np.log10(vr_2))
-axs[0].scatter(ic_den_eq[0],ic_den_eq[1], color = 'blue', marker = '.',label = 'No BH')
-axs[1].scatter(ic_vel_eq[0],ic_vel_eq[1], color='blue', marker = '.', label = 'No BH')
-axs[0].scatter(den_eq_smbh[0],den_eq_smbh[1], color='red', marker='.', label='Small BH (Mbh/M = 0.001)')
-axs[1].scatter(vel_eq_smbh[0],vel_eq_smbh[1], color='red', marker='.', label='Small BH (Mbh/M = 0.001')
+
+
+axs[0].plot(np.log10(r),np.log10(den), label='Theoretical ICs', linewidth=4,zorder=1, color='orange')
+axs[1].plot(np.log10(r), np.log10(vr_2), label='Theoretical ICs', linewidth=4,zorder=1,color='orange')
+
+axs[0].plot(np.log10(r_ad), np.log10(rhostar_ad), label = 'Adiabatic Prediction',color='blue',zorder=2,linestyle='dashed')
+axs[1].plot(np.log10(r_ad), np.log10(vr2star_ad), label ='Adiabatic Prediction',color='blue',zorder=2,linestyle='dashed')
+
+axs[0].scatter(ic_den_eq[0],ic_den_eq[1], color = 'green', marker = '.',label = 'No BH', zorder = 3)
+axs[1].scatter(ic_vel_eq[0],ic_vel_eq[1], color='green', marker = '.', label = 'No BH',zorder=3)
+
+
+axs[0].scatter(den_eq_smbh[0],den_eq_smbh[1], color='red', marker='.', label='Small BH (Mbh/M = 0.001)',zorder=4)
+axs[1].scatter(vel_eq_smbh[0],vel_eq_smbh[1], color='red', marker='.', label='Small BH (Mbh/M = 0.001)',zorder=4)
+
+
+
+
 
 
 #plot details
